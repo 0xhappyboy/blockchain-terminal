@@ -13,7 +13,7 @@ use ratatui::{
 };
 
 /// home page layout
-pub fn home_layout(frame: &mut Frame) {
+pub fn render_account_layout(frame: &mut Frame) {
     let main_layout = Layout::default()
         .direction(Direction::Vertical)
         .constraints(vec![Constraint::Percentage(9), Constraint::Percentage(91)])
@@ -27,10 +27,6 @@ pub fn home_layout(frame: &mut Frame) {
         .direction(Direction::Vertical)
         .constraints(vec![Constraint::Percentage(30), Constraint::Percentage(70)])
         .split(bottom_layout[0]);
-    let bottom_left_top_layout = Layout::default()
-        .direction(Direction::Vertical)
-        .constraints(vec![Constraint::Percentage(50), Constraint::Percentage(50)])
-        .split(bottom_left_layout[0]);
     /// search area
     frame.render_widget(
         Block::new()
@@ -45,7 +41,7 @@ pub fn home_layout(frame: &mut Frame) {
             .border_type(BorderType::Rounded)
             .borders(Borders::ALL)
             .border_style(Style::default().fg(Color::White))
-            .title("Block"),
+            .title("HOME1"),
         bottom_layout[0],
     );
     frame.render_widget(
@@ -81,6 +77,4 @@ pub fn home_layout(frame: &mut Frame) {
         .highlight_symbol(">>")
         .repeat_highlight_symbol(true)
         .direction(ListDirection::BottomToTop);
-    frame.render_widget(list.clone(), bottom_left_top_layout[0]);
-    frame.render_widget(list.clone(), bottom_left_top_layout[1]);
 }

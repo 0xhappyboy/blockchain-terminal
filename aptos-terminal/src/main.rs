@@ -1,10 +1,11 @@
 use app::App;
 use std::io;
 mod app;
-mod tui;
-mod widget;
-mod layout;
 mod i18n;
+mod router;
+mod tui;
+mod ui;
+mod widget;
 
 fn main() -> io::Result<()> {
     let mut terminal = tui::init()?;
@@ -12,4 +13,3 @@ fn main() -> io::Result<()> {
     tui::restore()?;
     app_result
 }
-

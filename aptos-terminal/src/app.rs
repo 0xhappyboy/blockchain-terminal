@@ -13,12 +13,13 @@ use ratatui::{
 };
 use std::io;
 
-use crate::{layout::home_layout, tui};
+use crate::{router::Router, tui, ui::layout::render_layout};
 
 #[derive(Debug, Default)]
 pub struct App {
     counter: u8,
     exit: bool,
+    pub router: Router,
 }
 
 impl App {
@@ -32,7 +33,7 @@ impl App {
     }
 
     fn render_frame(&self, frame: &mut Frame) {
-        home_layout(frame);
+        render_layout(frame, &self);
     }
 
     /// updates the application's state based on user input
@@ -53,6 +54,9 @@ impl App {
             KeyCode::Char('q') => self.exit(),
             KeyCode::Left => self.decrement_counter(),
             KeyCode::Right => self.increment_counter(),
+            KeyCode::Char('1') => self.router = Router::HOME,
+            KeyCode::Char('2') => self.router = Router::ACCOUNT,
+            KeyCode::Char('3') => self.router = Router::TRANSACTION,
             _ => {}
         }
     }
