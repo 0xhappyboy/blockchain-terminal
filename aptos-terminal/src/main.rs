@@ -51,7 +51,7 @@ async fn main() -> io::Result<()> {
 
     println!("ok");
 
-    println!("版本: {:?}", rest_client.get_aptos_version().await.unwrap());
+    println!("v: {:?}", rest_client.get_aptos_version().await.unwrap());
 
     let mut terminal = tui::init()?;
     let app_result = App::default().run(&mut terminal);
