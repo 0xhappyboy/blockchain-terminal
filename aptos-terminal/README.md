@@ -1,2 +1,2 @@
-## <center> Blockchain Terminal </center>  
-terminal based blockchain tools.
+## <center> Aptos Terminal </center>  
+terminal based aptos tools.
