@@ -12,10 +12,14 @@ use ratatui::{
     Frame,
 };
 
-use crate::{app::App, router::Router, ui::widget::widget::new_weight};
+use crate::{
+    app::{self, App},
+    router::Router,
+    ui::widget::widget::new_weight,
+};
 
 /// home page layout
-pub fn render_home_layout(frame: &mut Frame) {
+pub fn render_home_layout(frame: &mut Frame, app: &App) {
     let main_layout = Layout::default()
         .direction(Direction::Vertical)
         .constraints(vec![Constraint::Percentage(9), Constraint::Percentage(91)])
@@ -71,7 +75,7 @@ pub fn render_home_layout(frame: &mut Frame) {
             .border_type(BorderType::Rounded)
             .borders(Borders::ALL)
             .border_style(Style::default().fg(Color::White))
-            .title("Block"),
+            .title(app.a.to_string()),
         bottom_left_layout[1],
     );
 

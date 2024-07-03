@@ -11,7 +11,7 @@ mod transaction;
 
 pub fn render_layout(frame: &mut Frame, app: &App) {
     match app.router {
-        Router::HOME => render_home_layout(frame),
+        Router::HOME => render_home_layout(frame,app),
         Router::ACCOUNT => render_account_layout(frame),
         Router::TRANSACTION => render_transaction_layout(frame),
     }
