@@ -1,12 +1,12 @@
 use app::App;
 use std::io;
 mod app;
+mod event;
 mod i18n;
 mod router;
 mod tui;
 mod ui;
 mod widget;
-mod event;
 use anyhow::{Context, Result};
 use aptos_sdk::{
     coin_client::CoinClient,
@@ -41,21 +41,18 @@ static FAUCET_URL: Lazy<Url> = Lazy::new(|| {
 // <:!:section_1c
 
 #[tokio::main]
-fn main() -> io::Result<()> {
+async fn main() -> io::Result<()> {
+    // :!:>section_1a
+    let rest_client = Client::new(NODE_URL.clone());
+    let faucet_client = FaucetClient::new(FAUCET_URL.clone(), NODE_URL.clone()); // <:!:section_1a
 
-        // :!:>section_1a
-        let rest_client = Client::new(NODE_URL.clone());
-        let faucet_client = FaucetClient::new(FAUCET_URL.clone(), NODE_URL.clone()); // <:!:section_1a
-    
-        // :!:>section_1b
-        let coin_client = CoinClient::new(&rest_client); // <:!:section_1b
-    
-        println!("ok");
-    
-        println!("版本: {:?}",rest_client.get_aptos_version().await.unwrap());
-    
-        Ok(())
-        
+    // :!:>section_1b
+    let coin_client = CoinClient::new(&rest_client); // <:!:section_1b
+
+    println!("ok");
+
+    println!("版本: {:?}", rest_client.get_aptos_version().await.unwrap());
+
     let mut terminal = tui::init()?;
     let app_result = App::default().run(&mut terminal);
     tui::restore()?;
